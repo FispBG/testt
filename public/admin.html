@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация и список токенов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .auth-container, .token-list-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        #token-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #token-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .token-list-item.selected {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Авторизация</h2>
+        <input type="text" id="auth-input" placeholder="Введите токен">
+        <button id="auth-button" onclick="addToken()">Авторизоваться</button>
+    </div>
+    <div class="token-list-container">
+        <h2>Список токенов</h2>
+        <ul id="token-list">
+            <!-- Здесь будут отображаться токены -->
+        </ul>
+        <button id="add-token-button" onclick="addToken()">Добавить токен</button>
+        <button id="remove-token-button" onclick="removeToken()">Удалить токен</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const authInput = document.getElementById('auth-input');
+            const authButton = document.getElementById('auth-button');
+            const tokenList = document.getElementById('token-list');
+            const addTokenButton = document.getElementById('add-token-button');
+            const removeTokenButton = document.getElementById('remove-token-button');
+
+            authButton.addEventListener('click', function() {
+                const token = authInput.value.trim();
+                if (token) {
+                    addTokenToList(token);
+                    authInput.value = '';
+                }
+            });
+
+            addTokenButton.addEventListener('click', function() {
+                const token = prompt('Введите токен для добавления:');
+                if (token) {
+                    addTokenToList(token);
+                }
+            });
+
+            removeTokenButton.addEventListener('click', function() {
+                const selectedToken = document.querySelector('.token-list-item.selected');
+                if (selectedToken) {
+                    selectedToken.remove();
+                }
+            });
+
+            function addTokenToList(token) {
+                const listItem = document.createElement('li');
+                listItem.textContent = token;
+                listItem.classList.add('token-list-item');
+                listItem.addEventListener('click', function() {
+                    document.querySelectorAll('.token-list-item').forEach(item => item.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+                tokenList.appendChild(listItem);
+            }
+        });
+    </script>
+</body>
+</html>

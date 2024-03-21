@@ -1,0 +1,77 @@
+body {
+    background-color: rgb(125, 194, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    position: relative; /* Добавлено для позиционирования кнопки "Вернуться" */
+}
+
+.back-button {
+    position: absolute;
+    top: 15px; /* Увеличено */
+    left: 15px; /* Увеличено */
+    padding: 15px 25px; /* Увеличено */
+    background-color: #ff003b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 20px; /* Увеличено */
+    transition: background-color .3s;
+    display: flex; /* Добавлено для выравнивания текста и стрелки */
+    align-items: center; /* Добавлено для выравнивания текста и стрелки */
+}
+
+.back-button::before {
+    content: "←"; /* Добавлена стрелка */
+    margin-right: 10px; /* Увеличено */
+}
+
+.back-button:hover {
+    background-color: #ff4d6b;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    text-align: center; /* Добавлено для центрирования текста внутри контейнера */
+}
+
+.token-prompt {
+    margin-bottom: 20px; /* Добавлен отступ снизу для разделения надписи и формы */
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    font-size: 18px;
+}
+
+button {
+    padding: 15px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #ff003b;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+button:hover {
+    background-color: #ff4d6b;
+}
